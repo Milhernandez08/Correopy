@@ -1,5 +1,7 @@
 from flask import Flask, request, redirect, url_for, send_from_directory
+from flask_cors import CORS
 from correo import Correo
+
 
 import os
 import time
@@ -7,6 +9,7 @@ import time
 UPLOAD_FOLDER = os.path.abspath("./perfil/")
 
 app = Flask(__name__)
+cors = CORS(app, resources={r"/*": {"origins": "*"}})
 app.config["UPLOAD_FOLDER"] = UPLOAD_FOLDER
 
 @app.route("/")
