@@ -8,8 +8,8 @@ class Correo():
     
     def enviar(self):
 
-        message = "Su correo esta activo"
-        subject = "ACTIVACION DE CORREO"
+        message = "Su cuenta ha sido ACTIVADA"
+        subject = "ACTIVACION DE CUENTA"
 
         message = 'Subject: {}\n\n{}'.format(subject, message)
         

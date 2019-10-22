@@ -34,11 +34,10 @@ def upload():
 
         return filename
 
-@app.route("/enviarcorreo", methods=["POST"])
-def send():
-    print(request.form['correo'])
-    correo = Correo(request.form['correo'])
-    return correo.enviar()
+@app.route("/enviarcorreo/<correo>", methods=["POST"])
+def send(correo):
+    res = Correo(correo)
+    return res.enviar()
 
 @app.route("/uploads/<filename>")
 def get_file(filename):
