@@ -2,6 +2,7 @@ from flask import Flask, request, redirect, url_for, send_from_directory
 from flask_cors import CORS
 from correo import Correo
 
+
 import os
 import time
 
@@ -27,17 +28,12 @@ def upload():
             return "Ningun archivo seleccionado"
 
         extencion = f.filename.split(".")
-        filename = "time_" + time.strftime("%b") + time.strftime("%d") + time.strftime("%Y") + "_" + time.strftime("%H") + "_" + time.strftime("%M") + "_" + time.strftime("%S") + "." + extencion[1]
+        filename = "/perfil/time_" + time.strftime("%b") + time.strftime("%d") + time.strftime("%Y") + "_" + time.strftime("%H") + "_" + time.strftime("%M") + "_" + time.strftime("%S") + "." + extencion[1]
 
         f.save(os.path.join(app.config["UPLOAD_FOLDER"], filename))
-        return filename   #redirect(url_for("get_file", filename=filename))
 
-    # return """
-    # <form method="POST" enctype="multipart/form-data">
-    # <input type="file" name="ourfile">
-    # <input type="submit" name="UPLOAD">
-    # </form>
-    # """
+        return filename
+
 @app.route("/enviarcorreo/<correo>", methods=["POST"])
 def send(correo):
     res = Correo(correo)
